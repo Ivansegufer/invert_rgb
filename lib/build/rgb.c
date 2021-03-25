@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h> 
 #include <stdbool.h>
 
 #define MAX_RGB 255
@@ -28,4 +30,15 @@ void rgb_invert(struct RGB *rgb) {
         MAX_RGB - rgb -> g,
         MAX_RGB - rgb -> b
     );
+}
+
+char* rgb_str(struct RGB *rgb) {
+    char *str = malloc(sizeof(char) * 64);
+    sprintf(
+        str,
+        "RGB: [%i, %i, %i]\nHEX: 0x%02x%02x%02x",
+        rgb -> r, rgb -> g, rgb -> b,
+        rgb -> r, rgb -> g, rgb -> b
+    );
+    return str;
 }
