@@ -14,20 +14,11 @@ int* get_rgb_inline(char **argv) {
 }
 
 int main(int argc, char **argv) {
-    // Main header
     printf("---------- RGB INVERT ----------\n");
 
-    /*
-     * Here declare pointers to use in HEAP memory
-     * 1.- Declare pointer of struct RGB (rgb library)
-    */
     struct RGB *rgb = malloc(sizeof(struct RGB));
     int *colors;
 
-    /*
-     * Here declare variables to use in STACK memory
-     * 1.- Get de first flag to use in switch
-    */
     char flag = argv[1][1]; 
 
     switch (flag) {
