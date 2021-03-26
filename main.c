@@ -1,49 +1,27 @@
+#include <string.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
-#include "lib/rgb.h"
+#include "manager/app_manager.h"
 
-int* get_rgb_inline(char **argv) {
+void flag_handler(char *flags, int argc) {
 
-    int *colors = malloc(sizeof(int) * 3);
-    colors[0] = atoi(argv[2]);
-    colors[1] = atoi(argv[3]);
-    colors[2] = atoi(argv[4]);
-
-    return colors;
 }
 
 int main(int argc, char **argv) {
     printf("---------- RGB INVERT ----------\n");
-
-    struct RGB *rgb = malloc(sizeof(struct RGB));
-    int *colors;
-
-    char flag = argv[1][1]; 
-
-    switch (flag) {
-        case 'i':
-            if(argc == 5) {
-                colors = get_rgb_inline(argv);
-                bool was_set = rgb_set(rgb, colors[0], colors[1], colors[2]);
-                if(was_set) {
-                   rgb_invert(rgb);
-                   printf(
-                           "R: %i\nG: %i\nB: %i\n", 
-                           rgb -> r,
-                           rgb -> g,
-                           rgb -> b
-                         );
-                }
-                else printf("The arguments are invalids");
-                free(colors);
-            }
-            else printf("The numbers of arguments are invalids");
-            break;
-        default:
-            printf("No recognized the parameters");
-            break;
-    }
     
-    free(rgb);
+    struct APP *app = malloc(sizeof(struct APP));
+    char *flags;
+
+    init_app(app, argc, argv);
+    flags = get_flags(app);
+
+    if(flags[0] == '-') {
+        printf("Invalid flag, try again with -i, -m, -f");
+        return 1;
+    }
+
+    free(app);
+    free(flags);
+    return 0;
 }

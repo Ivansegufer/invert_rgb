@@ -1,4 +1,4 @@
-#include "build/rgb.c"
+#include "src/rgb.c"
 
 #ifndef _RGB
 
